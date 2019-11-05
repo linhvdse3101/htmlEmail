@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-
+const RedirectNotes = () => import("src/pages/vB/RedirectNotes.vue");
 Vue.use(Router)
 
 export default new Router({

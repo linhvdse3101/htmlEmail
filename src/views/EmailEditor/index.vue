@@ -1,6 +1,5 @@
-
 <template>
-  <div id="gjs"  style="overflow:hidden">
+  <div id="editor"  style="height:0px; overflow:hidden">
 
 
     <table class="main-body">
@@ -176,11 +175,12 @@
 
 <script>
 
-
-  import grapesjs from 'grapesjs'
+  // import editor from '../../Editor/index.html'
+  // import grapesjs from 'grapesjs'
   import axios from 'axios'
-  // import   '../../plugins/editorPlugin/index.js'
-  import  '../../plugins/grapesjs-preset-newsletter.min.js'
+  import editorGrape from '../../plugins/grapesjs-preset-newsletter.min.js'
+  import gjspresetnewsletter from '../../plugins/editorPlugin/index.js'
+
   export default {
     name: 'editor',
     data: function() {
@@ -197,7 +197,7 @@
     },
     mounted: function() {
       this.editor = grapesjs.init({
-        container: '#gjs',
+        container: '#editor',
         height: '100%',
         fromElement: true,
         plugins: ['gjs-preset-newsletter'],
@@ -207,7 +207,7 @@
             modalLabelExport: 'Copy the code and use it wherever you want',
             codeViewerTheme: 'material',
             //defaultTemplate: templateImport,
-            importPlaceholder: '<tab  le class="table"><tr><td class="cell">Hello world!</td></tr></table>',
+            importPlaceholder: '<table class="table"><tr><td class="cell">Hello world!</td></tr></table>',
             cellStyle: {
               'font-size': '12px',
               'font-weight': 300,
@@ -225,9 +225,6 @@
       var testContainer = document.getElementById("test-form");
       var contentEl = testContainer.querySelector('input[name=body]');
       var md = this.editor.Modal;
-
-      console.log('contentEl::'+ contentEl);
-
       cmdm.add('send-test', {
         run(editor, sender) {
           sender.set('active', 0);
@@ -246,64 +243,6 @@
             //clean status
           })
         }
-      });
-
-      pnm.addButton('options', {
-        id: 'send-test',
-        className: 'fa fa-paper-plane',
-        command: 'send-test',
-        attributes: {
-          'title': 'Test Newsletter',
-          'data-tooltip-pos': 'bottom',
-        },
-      });
-
-      //fa fa-refresh
-      var statusFormElC = document.querySelector('.form-status');
-      var statusFormEl = document.querySelector('.form-status i');
-      var ajaxTest = ajaxable(testContainer).
-      onStart(function(){
-        statusFormEl.className = 'fa fa-refresh anim-spin';
-        statusFormElC.style.opacity = '1';
-        statusFormElC.className = 'form-status';
-      })
-        .onResponse(function(res){
-          if (res.data) {
-            statusFormElC.style.opacity = '0';
-            statusFormEl.removeAttribute('data-tooltip');
-            md.close();
-          } else if(res.errors){
-            statusFormEl.className = 'fa fa-exclamation-circle';
-            statusFormEl.setAttribute('data-tooltip', res.errors);
-            statusFormElC.className = 'form-status text-danger';
-          }
-        });
-
-// Add info command
-      var infoContainer = document.getElementById("info-cont");
-      cmdm.add('open-info', {
-        run(editor, sender) {
-          sender.set('active', 0);
-          var mdlDialog = document.querySelector('.gjs-mdl-dialog');
-          mdlDialog.className += ' ' + mdlClass;
-          infoContainer.style.display = 'block';
-          md.setTitle('About this demo');
-          md.setContent('');
-          md.setContent(infoContainer);
-          md.open();
-          md.getModel().once('change:open', function() {
-            mdlDialog.className = mdlDialog.className.replace(mdlClass, '');
-          })
-        }
-      });
-      pnm.addButton('options', {
-        id: 'view-info',
-        className: 'fa fa-question-circle',
-        command: 'open-info',
-        attributes: {
-          'title': 'About',
-          'data-tooltip-pos': 'bottom',
-        },
       });
     }
   }

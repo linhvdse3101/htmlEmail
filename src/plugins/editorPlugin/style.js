@@ -1,4 +1,3 @@
-
 define(function() {
   return (opt = {}) => {
     let editor = opt.editor;
