@@ -1,68 +1,69 @@
 define(function() {
   return (opt = {}) => {
-    let tableStyleStr = '';
-    let cellStyleStr = '';
-    let editor = opt.editor;
-    let tableStyle = opt.tableStyle || {};
-    let cellStyle = opt.cellStyle || {};
-    let bm = editor.BlockManager;
-    for (let prop in tableStyle){
-      tableStyleStr += `${prop}: ${tableStyle[prop]}; `;
+    let tableStyleStr = ''
+    let cellStyleStr = ''
+    let editor = opt.editor
+    let tableStyle = opt.tableStyle || {}
+    let cellStyle = opt.cellStyle || {}
+    let bm = editor.BlockManager
+    for (let prop in tableStyle) {
+      tableStyleStr += `${prop}: ${tableStyle[prop]}; `
     }
-    for (let prop in cellStyle){
-      cellStyleStr += `${prop}: ${cellStyle[prop]}; `;
+    for (let prop in cellStyle) {
+      cellStyleStr += `${prop}: ${cellStyle[prop]}; `
     }
-    bm.getAll().reset();
+    bm.getAll().reset()
     bm.add('sect100', {
       label: opt.sect100BlkLabel,
       category: opt.categoryLabel,
-      attributes: {class:'gjs-fonts gjs-f-b1'},
+      attributes: { class: 'gjs-fonts gjs-f-b1' },
       content: `<table style="${tableStyleStr}">
         <tr>
           <td style="${cellStyleStr}"></td>
         </tr>
-        </table>`,
-    });
+        </table>`
+    })
     bm.add('sect50', {
       label: opt.sect50BlkLabel,
       category: opt.categoryLabel,
-      attributes: {class:'gjs-fonts gjs-f-b2'},
+      attributes: { class: 'gjs-fonts gjs-f-b2' },
       content: `<table style="${tableStyleStr}">
         <tr>
           <td style="${cellStyleStr} width: 50%"></td>
           <td style="${cellStyleStr} width: 50%"></td>
         </tr>
-        </table>`,
-    });
+        </table>`
+    })
     bm.add('sect30', {
       label: opt.sect30BlkLabel,
       category: opt.categoryLabel,
-      attributes: {class:'gjs-fonts gjs-f-b3'},
+      attributes: { class: 'gjs-fonts gjs-f-b3' },
       content: `<table style="${tableStyleStr}">
         <tr>
           <td style="${cellStyleStr} width: 33.3333%"></td>
           <td style="${cellStyleStr} width: 33.3333%"></td>
           <td style="${cellStyleStr} width: 33.3333%"></td>
         </tr>
-        </table>`,
-    });
+        </table>`
+    })
     bm.add('sect37', {
       label: opt.sect37BlkLabel,
       category: opt.categoryLabel,
-      attributes: {class:'gjs-fonts gjs-f-b37'},
+      attributes: { class: 'gjs-fonts gjs-f-b37' },
       content: `<table style="${tableStyleStr}">
         <tr>
           <td style="${cellStyleStr} width:30%"></td>
           <td style="${cellStyleStr} width:70%"></td>
         </tr>
-        </table>`,
-    });
+        </table>`
+    })
     bm.add('button', {
       label: opt.buttonBlkLabel,
       category: opt.categoryLabel,
-      content: '<a class="button">Button</a>',
-      attributes: {class:'gjs-fonts gjs-f-button'}
-    });
+      content: '<a style="font-size: 12px; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px; background-color: rgb(217, 131, 166); color: rgb(255, 255, 255); text-align: center; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; font-weight: 300;" class="button">Button</a>',
+      attributes: { class: 'gjs-fonts gjs-f-button' },
+
+    })
     bm.add('divider', {
       label: opt.dividerBlkLabel,
       category: opt.categoryLabel,
@@ -77,55 +78,55 @@ define(function() {
         height: 1px;
       }
       </style>`,
-      attributes: {class:'gjs-fonts gjs-f-divider'}
-    });
+      attributes: { class: 'gjs-fonts gjs-f-divider' }
+    })
     bm.add('text', {
       label: opt.textBlkLabel,
       category: opt.categoryLabel,
-      attributes: {class:'gjs-fonts gjs-f-text'},
+      attributes: { class: 'gjs-fonts gjs-f-text' },
       content: {
-       type: 'text',
-       content: 'Insert your text here',
-       style: { padding: '10px' },
-       activeOnRender: 1
-      },
-    });
+        type: 'text',
+        content: 'Insert your text here',
+        style: { padding: '10px' },
+        activeOnRender: 1
+      }
+    })
     bm.add('text-sect', {
       label: opt.textSectionBlkLabel,
       category: opt.categoryLabel,
       content: '<h1 class="heading">Insert title here</h1><p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>',
-      attributes: {class:'gjs-fonts gjs-f-h1p'}
-    });
+      attributes: { class: 'gjs-fonts gjs-f-h1p' }
+    })
     bm.add('image', {
       label: opt.imageBlkLabel,
       category: opt.categoryLabel,
-      attributes: {class:'gjs-fonts gjs-f-image'},
+      attributes: { class: 'gjs-fonts gjs-f-image' },
       content: {
-        type:'image',
-        style: {color:'black'},
+        type: 'image',
+        style: { color: 'black' },
         activeOnRender: 1
-      },
-    });
+      }
+    })
     bm.add('quote', {
       label: opt.quoteBlkLabel,
       category: opt.categoryLabel,
       content: '<blockquote class="quote">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore ipsum dolor sit</blockquote>',
-      attributes: {class:'fa fa-quote-right'}
-    });
+      attributes: { class: 'fa fa-quote-right' }
+    })
     bm.add('link', {
       label: opt.linkBlkLabel,
       category: opt.categoryLabel,
-      attributes: {class:'fa fa-link'},
+      attributes: { class: 'fa fa-link' },
       content: {
         type: 'link',
         content: 'Link',
-        style: {color:'#3b97e3'}
-      },
-    });
+        style: { color: '#3b97e3' }
+      }
+    })
     bm.add('link-block', {
       label: opt.linkBlockBlkLabel,
       category: opt.categoryLabel,
-      attributes: {class:'fa fa-link'},
+      attributes: { class: 'fa fa-link' },
       content: {
         type: 'link',
         editable: false,
@@ -136,8 +137,8 @@ define(function() {
           'min-height': '50px',
           'min-width': '50px'
         }
-      },
-    });
+      }
+    })
     let gridItem =
       `<table class="grid-item-card">
         <tr>
@@ -153,7 +154,7 @@ define(function() {
             </table>
           </td>
         </tr>
-      </table>`;
+      </table>`
     bm.add('grid-items', {
       label: opt.gridItemsBlkLabel,
       category: opt.categoryLabel,
@@ -163,8 +164,8 @@ define(function() {
           <td class="grid-item-cell2-r">${gridItem}</td>
         </tr>
       </table>`,
-      attributes: {class:'fa fa-th'}
-    });
+      attributes: { class: 'fa fa-th' }
+    })
     let listItem =
       `<table class="list-item">
         <tr>
@@ -182,12 +183,12 @@ define(function() {
             </table>
           </td>
         </tr>
-      </table>`;
+      </table>`
     bm.add('list-items', {
       label: opt.listItemsBlkLabel,
       category: opt.categoryLabel,
       content: listItem + listItem,
-      attributes: {class:'fa fa-th-list'}
-    });
-  };
+      attributes: { class: 'fa fa-th-list' }
+    })
+  }
 })

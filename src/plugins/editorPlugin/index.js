@@ -1,6 +1,6 @@
 import grapesjs from 'grapesjs';
 
-export default grapesjs.plugins.add('gjs-preset-newsletter', (editor, opts) => {
+export default new grapesjs.plugins.add('gjs-preset-newsletter', (editor, opts) => {
   let c = opts || {};
   let config = editor.getConfig();
   let pfx = config.stylePrefix;
