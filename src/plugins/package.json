@@ -32,7 +32,7 @@
     "jest": "^23.1.0",
     "node-sass": "^4.5.3",
     "webpack": "^3.5.5",
-    "webpack-dev-server": "^2.7.1"
+    "webpack-dev-server": "^3.1.11"
   },
   "jest": {
     "modulePaths": [
